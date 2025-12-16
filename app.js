@@ -92,7 +92,8 @@ const scriptSrcUrls = [
 ];
 const imageSrcUrls = [
    `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/`,
-   'https://api.maptiler.com'
+   'https://api.maptiler.com',
+   'https://images.unsplash.com'
 ];
 const connectSrcUrls = [
    'https://cdn.jsdelivr.net',
