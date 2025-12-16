@@ -49,6 +49,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+const secret = process.env.SECRET || 'mysecret';
+
 const store = MongoStore.create({
   mongoUrl: dbUrl,
   touchAfter: 24 * 60 * 60,
@@ -58,8 +60,6 @@ const store = MongoStore.create({
 store.on('error', e => {
   console.log('セッションストアエラー', e);
 });
-
-const secret = process.env.SECRET || 'mysecret';
 
 const sessionConfig = {
   store,
@@ -147,6 +147,7 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render('error', { err });
 });
 
-app.listen(3000, () => {
-    console.log('ポート3000でリクエスト待ち受け中');
+const port = process.env.PORT || 3000
+app.listen(port, () => {
+    console.log(`ポート${port}でリクエスト待ち受け中`);
 });
